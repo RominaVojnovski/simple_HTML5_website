@@ -18,10 +18,83 @@
 
     <!-- Add custom CSS here -->
     <link href="css/landing-page.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 </head>
 
 <body>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">CS 546</a>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li><a href="tables.html">Tables</a>
+                    </li>
+                    <li><a href="lists.html">Lists</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+
+	<div id="target">
+
+	</div>
+
+
+<script>
+        var tag = "kitty";
+        var count = 4;
+        var access_token = '1343136060.a9cf75f.67e10ab3a265472a9267de371c7410d7';
+        var access_parameters = { access_token: access_token };
+
+        function grabImages(access_parameters) {
+            var instagramUrl = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?callback=?&count=' + count;
+            $.getJSON(instagramUrl,access_parameters,onDataLoaded);
+        }
+        function onDataLoaded(instagram_data) {
+            if (instagram_data.meta.code == 200) {
+                
+                var photos = instagram_data.data;
+                if (photos.length > 0) {
+                    for (var key in photos) {
+                        
+                        var photo = photos[key];
+                        $('#target').append('<img src="'+photo.images.thumbnail.url+'"/>');
+                    }
+                }
+                else {
+                    $('#target').append("Hmm. Nothing found");
+                }
+            }
+            else {
+                //if we didn't get a 200 (success) reques from instargram
+                var error = instagram_data.meta.error_message;
+                $("#target").append('Something happened, Instagram said: ' + error);
+            }
+        }
+        
+        $(document).ready(function () {
+            grabImages(access_parameters);
+        });
+
+    </script>
 
 
 </body>
