@@ -18,8 +18,10 @@
 
     <!-- Add custom CSS here -->
     <link href="css/landing-page.css" rel="stylesheet">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+
 </head>
 
 <body>
@@ -56,9 +58,19 @@
 	<div id="target">
 
 	</div>
+        <br/>
+        
+        <div id="target2">
+            
+        </div>
 
 
 <script>
+        SC.initialize({
+            client_id: "fccb0e81c86e60ca29bee4b63faadd48"
+            });
+        
+        
         var tag = "kitty";
         var count = 4;
         var access_token = '1343136060.a9cf75f.67e10ab3a265472a9267de371c7410d7';
@@ -92,6 +104,9 @@
         
         $(document).ready(function () {
             grabImages(access_parameters);
+            SC.get("/groups/55517/tracks",{limit: 1},function(tracks){
+                alert("Latest track:" +tracks[0].title);
+            });
         });
 
     </script>
