@@ -60,9 +60,7 @@
 	</div>
         <br/>
         
-        <div id="target2">
-            
-        </div>
+        <div id="putTheWidgetHere"></div>
 
 
 <script>
@@ -104,9 +102,9 @@
         
         $(document).ready(function () {
             grabImages(access_parameters);
-            SC.get("/groups/55517/tracks",{limit: 1},function(tracks){
-                alert("Latest track:" +tracks[0].title);
-            });
+            SC.oEmbed("http://soundcloud.com/forss/sets/soulhack", {color: "ff0066"},  document.getElementById("putTheWidgetHere"));
+			
+			
         });
 
     </script>
