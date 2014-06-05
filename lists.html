@@ -37,7 +37,7 @@
                 <a class="navbar-brand" href="#">CS 546</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            
             <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="index.html">Home</a>
@@ -52,28 +52,96 @@
         </div>
         <!-- /.container -->
     </nav>
-
-
-
-	<div id="target">
-
-	</div>
-        <br/>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 text-center">
+			
+				<h2>Dropdown as Select</h2>
+				<div class="btn-group">
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Item I</a></li>
+						<li><a href="#">Item II</a></li>
+						<li><a href="#">Item III</a></li>
+						<li><a href="#">Item IV</a></li>
+						<li><a href="#">Item V</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Other</a></li>
+					</ul>
+				
+				</div>
+			</div>
+			<div class="col-md-4 text-center">
+				<h2>Dropdown as Select</h2>
+				<div class="btn-group">
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Item I</a></li>
+						<li><a href="#">Item II</a></li>
+						<li><a href="#">Item III</a></li>
+						<li><a href="#">Item IV</a></li>
+						<li><a href="#">Item V</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Other</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4 text-center">
+				<h2>Dropdown as Select</h2>
+				<div class="btn-group">
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Item I</a></li>
+						<li><a href="#">Item II</a></li>
+						<li><a href="#">Item III</a></li>
+						<li><a href="#">Item IV</a></li>
+						<li><a href="#">Item V</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Other</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<!--first ig list-->
+			<div class="col-md-4 text-center">
+				<ul id="target" style="list-style:none; padding: 50px 0 0 0;">
+			</ul>
+			</div>
+	
+			<!--second ig list-->
+			<div class="col-md-4 text-center">
+				<ul id="target2" style="list-style:none; padding: 50px 0 0 0;">
+				</ul>
+			</div>
+	
+			<!--third ig list-->
+			<div class="col-md-4 text-center">
+				<ul id="target3" style="list-style:none; padding: 50px 0 0 0;">
+				</ul>
+			</div>
+		</div>
         
-        <div id="putTheWidgetHere"></div>
-
+   </div>     <!--
+        <div id="putTheWidgetHere"></div> -->
 
 <script>
-        SC.initialize({
+        //soundcloud sdk initialize
+		SC.initialize({
             client_id: "fccb0e81c86e60ca29bee4b63faadd48"
             });
         
         
-        var tag = "kitty";
-        var count = 4;
+        var tag = "asot";
+		var tag2 = "andrewrayel";
+		var tag3 = "kitty";
+		var tag4 = "simon patterson";
+        var count = 10;
         var access_token = '1343136060.a9cf75f.67e10ab3a265472a9267de371c7410d7';
         var access_parameters = { access_token: access_token };
-
+		
+		//first set of data
         function grabImages(access_parameters) {
             var instagramUrl = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?callback=?&count=' + count;
             $.getJSON(instagramUrl,access_parameters,onDataLoaded);
@@ -86,7 +154,7 @@
                     for (var key in photos) {
                         
                         var photo = photos[key];
-                        $('#target').append('<img src="'+photo.images.thumbnail.url+'"/>');
+                        $('#target').append('<li><img src="'+photo.images.thumbnail.url+'"/></li>');
                     }
                 }
                 else {
@@ -99,9 +167,70 @@
                 $("#target").append('Something happened, Instagram said: ' + error);
             }
         }
+		
+		//second set of data
+        function grabImages2(access_parameters) {
+            var instagramUrl2 = 'https://api.instagram.com/v1/tags/' + tag2 + '/media/recent?callback=?&count=' + count;
+            $.getJSON(instagramUrl2,access_parameters,onDataLoaded2);
+        }
+        function onDataLoaded2(instagram_data) {
+            if (instagram_data.meta.code == 200) {
+                
+                var photos = instagram_data.data;
+                if (photos.length > 0) {
+                    for (var key in photos) {
+                        
+                        var photo = photos[key];
+                        $('#target2').append('<li><img src="'+photo.images.thumbnail.url+'"/></li>');
+                    }
+                }
+                else {
+                    $('#target2').append("Hmm. Nothing found");
+                }
+            }
+            else {
+                //if we didn't get a 200 (success) reques from instargram
+                var error = instagram_data.meta.error_message;
+                $("#target2").append('Something happened, Instagram said: ' + error);
+            }
+        }
+		
+		//third set of data
+        function grabImages3(access_parameters) {
+            var instagramUrl3 = 'https://api.instagram.com/v1/tags/' + tag3 + '/media/recent?callback=?&count=' + count;
+            $.getJSON(instagramUrl3,access_parameters,onDataLoaded3);
+        }
+        function onDataLoaded3(instagram_data) {
+            if (instagram_data.meta.code == 200) {
+                
+                var photos = instagram_data.data;
+                if (photos.length > 0) {
+                    for (var key in photos) {
+                        
+                        var photo = photos[key];
+                        $('#target3').append('<li><img src="'+photo.images.thumbnail.url+'"/></li>');
+                    }
+                }
+                else {
+                    $('#target3').append("Hmm. Nothing found");
+                }
+            }
+            else {
+                //if we didn't get a 200 (success) reques from instargram
+                var error = instagram_data.meta.error_message;
+                $("#target3").append('Something happened, Instagram said: ' + error);
+            }
+        }
+		
+		
+		
+		
+		
         
         $(document).ready(function () {
             grabImages(access_parameters);
+			grabImages2(access_parameters);
+			grabImages3(access_parameters);
             SC.oEmbed("http://soundcloud.com/forss/sets/soulhack", {color: "ff0066"},  document.getElementById("putTheWidgetHere"));
 			
 			
