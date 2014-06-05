@@ -11,13 +11,14 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom Google Web Font -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Add custom CSS here -->
-    <link href="css/landing-page.css" rel="stylesheet">
+    
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
@@ -26,6 +27,7 @@
 </head>
 
 <body>
+  
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -57,7 +59,7 @@
 	<br/>
 	<br/>
 	<div class="row text-center">
-		<h2>Instagram Lists</h2>
+		<h2>Instagram Tag Lists</h2>
 	</div>
 	<div class="container-fluid">
 		<div class="row">
@@ -70,7 +72,14 @@
 					<ul class="dropdown-menu" id="ul1" role="menu">
 						<li><a href="#">asot</a></li>
 						<li><a href="#">andrewrayel</a></li>
-						<li><a href="#">kitty</a></li>
+						<li><a href="#">powerlifting</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">nested sub-menu</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">second level</a></li>
+                            </ul>
+                        </li>
 					</ul>
 				</div>
 			</div>
@@ -83,7 +92,14 @@
 					<ul class="dropdown-menu" id="ul2" role="menu">
 						<li><a href="#">asot</a></li>
 						<li><a href="#">andrewrayel</a></li>
-						<li><a href="#">kitty</a></li>
+						<li><a href="#">powerlifting</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">nested sub-menu</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">second level</a></li>
+                            </ul>
+                        </li>
 					</ul>
 				</div>
 			</div>
@@ -96,7 +112,14 @@
 					<ul class="dropdown-menu" id="ul3" role="menu">
 						<li><a href="#">asot</a></li>
 						<li><a href="#">andrewrayel</a></li>
-						<li><a href="#">kitty</a></li>
+						<li><a href="#">powerlifting</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">nested sub-menu</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">second level</a></li>
+                            </ul>
+                        </li>
 					</ul>
 				</div>
 			</div>
@@ -122,8 +145,7 @@
 			</div>
 		</div>
         
-   </div>     <!--
-        <div id="putTheWidgetHere"></div> -->
+   </div>   
 
 <script>
 		//global variables
@@ -140,7 +162,6 @@
 		$("#ul1 li a").click(function(){
 			var selText1 = $(this).text();
 			$(this).parents('.btn-group').find('.dropdown-toggle').html(selText1+' <span class="caret"></span>');
-			console.log(selText1);
 			if(selText1==="asot"){
 				tag="asot";
 				$("#target").empty();
@@ -151,8 +172,8 @@
 				$("#target").empty();
 				grabImages(access_parameters);
 			}
-			else if(selText1==="kitty"){
-				tag="kitty";
+			else if(selText1==="powerlifting"){
+				tag="powerlifting";
 				$("#target").empty();
 				grabImages(access_parameters);
 			}
@@ -161,7 +182,6 @@
 		$("#ul2 li a").click(function(){
 			var selText2 = $(this).text();
 			$(this).parents('.btn-group').find('.dropdown-toggle').html(selText2+' <span class="caret"></span>');
-			console.log(selText2);
 			if(selText2==="asot"){
 				tag2="asot";
 				$("#target2").empty();
@@ -172,8 +192,8 @@
 				$("#target2").empty();
 				grabImages2(access_parameters);
 			}
-			else if(selText2==="kitty"){
-				tag2="kitty";
+			else if(selText2==="powerlifting"){
+				tag2="powerlifting";
 				$("#target2").empty();
 				grabImages2(access_parameters);
 			}
@@ -182,7 +202,6 @@
 		$("#ul3 li a").click(function(){
 			var selText3 = $(this).text();
 			$(this).parents('.btn-group').find('.dropdown-toggle').html(selText3+' <span class="caret"></span>');
-			console.log(selText3);
 			if(selText3==="asot"){
 				tag3="asot";
 				$("#target3").empty();
@@ -193,23 +212,15 @@
 				$("#target3").empty();
 				grabImages3(access_parameters);
 			}
-			else if(selText3==="kitty"){
-				tag3="kitty";
+			else if(selText3==="powerlifting"){
+				tag3="powerlifting";
 				$("#target3").empty();
 				grabImages3(access_parameters);
 			}
 		});
-		
-		
-		//soundcloud sdk initialize
-		SC.initialize({
-            client_id: "fccb0e81c86e60ca29bee4b63faadd48"
-            });
-        
-        
+
        
-       
-		//first set of data
+		//first ig column
         function grabImages(access_parameters) {
             var instagramUrl = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?callback=?&count=' + count;
             $.getJSON(instagramUrl,access_parameters,onDataLoaded);
@@ -236,7 +247,7 @@
             }
         }
 		
-		//second set of data
+		//second ig column
         function grabImages2(access_parameters) {
             var instagramUrl2 = 'https://api.instagram.com/v1/tags/' + tag2 + '/media/recent?callback=?&count=' + count;
             $.getJSON(instagramUrl2,access_parameters,onDataLoaded2);
@@ -263,7 +274,7 @@
             }
         }
 		
-		//third set of data
+		//third ig column 
         function grabImages3(access_parameters) {
             var instagramUrl3 = 'https://api.instagram.com/v1/tags/' + tag3 + '/media/recent?callback=?&count=' + count;
             $.getJSON(instagramUrl3,access_parameters,onDataLoaded3);
@@ -290,17 +301,6 @@
             }
         }
 		
-		
-		
-		
-		
-        
-        $(document).ready(function () {
-			
-            SC.oEmbed("http://soundcloud.com/forss/sets/soulhack", {color: "ff0066"},  document.getElementById("putTheWidgetHere"));
-			
-			
-        });
 
     </script>
 
