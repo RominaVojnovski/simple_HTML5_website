@@ -20,6 +20,7 @@
     <link href="css/landing-page.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
     <script src="http://connect.soundcloud.com/sdk.js"></script>
 
 </head>
@@ -34,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">CS 546</a>
+                <a class="navbar-brand" href="#">My Site</a>
             </div>
 
             
@@ -52,52 +53,50 @@
         </div>
         <!-- /.container -->
     </nav>
+	<br/>
+	<br/>
+	<br/>
+	<div class="row text-center">
+		<h2>Instagram Lists</h2>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-4 text-center">
-			
-				<h2>Dropdown as Select</h2>
+				<h2>&nbsp;</h2>
 				<div class="btn-group">
-					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Item I</a></li>
-						<li><a href="#">Item II</a></li>
-						<li><a href="#">Item III</a></li>
-						<li><a href="#">Item IV</a></li>
-						<li><a href="#">Item V</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Other</a></li>
-					</ul>
-				
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<h2>Dropdown as Select</h2>
-				<div class="btn-group">
-					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Item I</a></li>
-						<li><a href="#">Item II</a></li>
-						<li><a href="#">Item III</a></li>
-						<li><a href="#">Item IV</a></li>
-						<li><a href="#">Item V</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Other</a></li>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						List 1<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" id="ul1" role="menu">
+						<li><a href="#">asot</a></li>
+						<li><a href="#">andrewrayel</a></li>
+						<li><a href="#">kitty</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-4 text-center">
-				<h2>Dropdown as Select</h2>
+				<h2>&nbsp;</h2>
 				<div class="btn-group">
-					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Item I</a></li>
-						<li><a href="#">Item II</a></li>
-						<li><a href="#">Item III</a></li>
-						<li><a href="#">Item IV</a></li>
-						<li><a href="#">Item V</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Other</a></li>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						List 2 <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" id="ul2" role="menu">
+						<li><a href="#">asot</a></li>
+						<li><a href="#">andrewrayel</a></li>
+						<li><a href="#">kitty</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4 text-center">
+				<h2>&nbsp;</h2>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						List 3 <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" id="ul3" role="menu">
+						<li><a href="#">asot</a></li>
+						<li><a href="#">andrewrayel</a></li>
+						<li><a href="#">kitty</a></li>
 					</ul>
 				</div>
 			</div>
@@ -127,20 +126,89 @@
         <div id="putTheWidgetHere"></div> -->
 
 <script>
-        //soundcloud sdk initialize
+		//global variables
+		var tag = "";
+		var tag2 = "";
+		var tag3 = "";
+		var count = 4;
+		//instagram access token
+        var access_token = '1343136060.a9cf75f.67e10ab3a265472a9267de371c7410d7';
+        var access_parameters = { access_token: access_token };
+		
+		
+		
+		$("#ul1 li a").click(function(){
+			var selText1 = $(this).text();
+			$(this).parents('.btn-group').find('.dropdown-toggle').html(selText1+' <span class="caret"></span>');
+			console.log(selText1);
+			if(selText1==="asot"){
+				tag="asot";
+				$("#target").empty();
+				grabImages(access_parameters);
+			}
+			else if(selText1==="andrewrayel"){
+				tag="andrewrayel";
+				$("#target").empty();
+				grabImages(access_parameters);
+			}
+			else if(selText1==="kitty"){
+				tag="kitty";
+				$("#target").empty();
+				grabImages(access_parameters);
+			}
+			
+		});
+		$("#ul2 li a").click(function(){
+			var selText2 = $(this).text();
+			$(this).parents('.btn-group').find('.dropdown-toggle').html(selText2+' <span class="caret"></span>');
+			console.log(selText2);
+			if(selText2==="asot"){
+				tag2="asot";
+				$("#target2").empty();
+				grabImages2(access_parameters);
+			}
+			else if(selText2==="andrewrayel"){
+				tag2="andrewrayel";
+				$("#target2").empty();
+				grabImages2(access_parameters);
+			}
+			else if(selText2==="kitty"){
+				tag2="kitty";
+				$("#target2").empty();
+				grabImages2(access_parameters);
+			}
+		});
+		
+		$("#ul3 li a").click(function(){
+			var selText3 = $(this).text();
+			$(this).parents('.btn-group').find('.dropdown-toggle').html(selText3+' <span class="caret"></span>');
+			console.log(selText3);
+			if(selText3==="asot"){
+				tag3="asot";
+				$("#target3").empty();
+				grabImages3(access_parameters);
+			}
+			else if(selText3==="andrewrayel"){
+				tag3="andrewrayel";
+				$("#target3").empty();
+				grabImages3(access_parameters);
+			}
+			else if(selText3==="kitty"){
+				tag3="kitty";
+				$("#target3").empty();
+				grabImages3(access_parameters);
+			}
+		});
+		
+		
+		//soundcloud sdk initialize
 		SC.initialize({
             client_id: "fccb0e81c86e60ca29bee4b63faadd48"
             });
         
         
-        var tag = "asot";
-		var tag2 = "andrewrayel";
-		var tag3 = "kitty";
-		var tag4 = "simon patterson";
-        var count = 10;
-        var access_token = '1343136060.a9cf75f.67e10ab3a265472a9267de371c7410d7';
-        var access_parameters = { access_token: access_token };
-		
+       
+       
 		//first set of data
         function grabImages(access_parameters) {
             var instagramUrl = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?callback=?&count=' + count;
@@ -228,9 +296,7 @@
 		
         
         $(document).ready(function () {
-            grabImages(access_parameters);
-			grabImages2(access_parameters);
-			grabImages3(access_parameters);
+			
             SC.oEmbed("http://soundcloud.com/forss/sets/soulhack", {color: "ff0066"},  document.getElementById("putTheWidgetHere"));
 			
 			
